@@ -1,0 +1,38 @@
+# Python virtual environment
+venv
+
+# Ignore temporary files
+*.log
+*.tmp
+
+# Ignore compiled code and build output
+*.pyc
+__pycache__/
+/build/
+/dist/
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+.emacs.d/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+.directory
+
+# Ignore package management files
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ignore environment and configuration files
+.env
+.env.local
+.env.*
+
+# Ignore sensitive information
+secrets.json
+
+# Ignore user-specific files
+user-specific-settings.json
