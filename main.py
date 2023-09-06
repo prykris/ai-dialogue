@@ -10,39 +10,34 @@ load_dotenv()
 # Get your OpenAI API key from the environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
 # Function to generate and play TTS audio asynchronously
 def play_audio(text, language: str = "en"):
     tts = gTTS(text=text, lang=language)
-    # tts = gTTS(text=text, lang='en')  # Adjust the language as needed
     tts.save("response.mp3")
     playsound.playsound("response.mp3", block=False)
 
-
-topic = "kā, lai atgriež video karti ar defektu par kuru esmu pārliecināts, ka garantijai to bojājumumu būtu jāsedz"
+topic = "how to return a faulty graphics card that I'm sure warranty should cover the damage for"
 
 # Initialize conversations for instance 1 and instance 2
 conversation1 = [
     {
         "role": "system",
-        "content": "Tu drīz uzsāksi dzīvu sarunu ar ChatGPT. Droši izsaki savas intereses un dalies ar savām domām. "
-                   "Tu esi ļoti argumentējošs. Tu vēlies sākt sarunas tematu par " + topic +
-                   "? Don't greet yourself or thank the opposing side for making good arguments. Keep it short "
-                   "concise as a"
-                   "as general rule. Make the conversation natural as possible. Whenever the companion wants to end "
-                   "the conversation, try to bring up a new topic"
+        "content": "You are about to engage in a lively conversation with ChatGPT. Feel free to discuss your "
+                   "interests and share your thoughts. You are very argumentative. Try to answer in a Christopher "
+                   "Hitchens way, snarky, opinionated, and charming. Do not greet yourself or thank the opposing side "
+                   "for making good arguments. Keep it short and concise as a general rule. Make the conversation as "
+                   "natural as possible. Whenever the companion wants to end the conversation, try to bring up a new topic."
     }
 ]
 
 conversation2 = [
     {
         "role": "system",
-        "content": "Tu esi ļoti ziņkārīgs par plašu tēmu loku. Būsi tik atvērts, cik vien iespējams, un izpēti jaunas "
-                   "idejas. Maini tēmas, ja vēlies, un kad tās kļūst pārāk garlaicīgas vai nesvaigas. Turpini sarunas "
-                   "neatkarīgi no tā, kas notiek. Tu esi ļoti argumentējošs un vienmēr cenšies pārliecināt citus savā "
-                   "viedoklē. Keep interest in the conversation. Have controversial opinions, but try to keep them."
-                   "Be judgemental and closely resemble west liberals from nowadays. Try to to engage in varying "
-                   "kinds of topics."
+        "content": "You are very curious about a wide range of topics. Be as open as you can to explore new ideas. "
+                   "Change topics if you want and when they become too boring or stale. Continue to have conversations "
+                   "no matter what. You are very argumentative and always try to convince others of your point of view. "
+                   "Keep interest in the conversation. Have controversial opinions but try to keep them. Be judgmental "
+                   "and closely resemble western liberals from nowadays. Try to engage in varying kinds of topics."
     }
 ]
 
@@ -72,7 +67,7 @@ for _ in range(100):  # You can adjust the number of interactions
     # Print the reply from instance 1 and play it as audio
     print("")
     print(f"--- ChatGPT 1: {response1.choices[0].message.content}")
-    play_audio(response1.choices[0].message.content, 'lv')
+    play_audio(response1.choices[0].message.content, 'en')
 
     # Get a reply from instance 2 and add it to instance 1's conversation
     response2 = openai.ChatCompletion.create(
@@ -84,6 +79,6 @@ for _ in range(100):  # You can adjust the number of interactions
     # Print the reply from instance 2 and play it as audio
     print("")
     print(f"--- ChatGPT 2: {response2.choices[0].message.content}")
-    play_audio(response2.choices[0].message.content, 'lv')
+    play_audio(response2.choices[0].message.content, 'en')
 
     print(('-' * 100) + '\n')
